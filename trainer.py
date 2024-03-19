@@ -279,7 +279,7 @@ class Trainer(object):
                     the denoised result and optionally the fully-denoised image.
         """
 
-        B = len(data)  # TODO: waiting for adjustment
+        B = len(data)
         C = self.opt.c_batch_size
         text_zs = []
         cameras = []
@@ -423,7 +423,7 @@ class Trainer(object):
 
     def eval_step(self, data):
 
-        B = len(data)  # TODO: waiting for adjustment
+        B = len(data)
         C = self.opt.c_batch_size
         text_zs = []
         cameras = []
@@ -585,7 +585,7 @@ class Trainer(object):
                     pbar.set_description(f"loss={loss_val:.4f} ({total_loss/self.local_step:.4f})")
                 pbar.update(loader.batch_size)
 
-        # TODO: check it why out of the loop
+
         if self.ema is not None:
             self.ema.update()
 
