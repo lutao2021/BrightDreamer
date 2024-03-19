@@ -28,11 +28,6 @@ class PipelineParams:
         self.compute_cov3D_python = False
         self.debug = False
 class CustomizeSequential(nn.Sequential):
-    """
-    A sequential module that passes timestep embeddings to the children that
-    support it as an extra input.
-    """
-
     def forward(self, x, context=None):
         for layer in self:
             if isinstance(layer, SpatialTransformer):
@@ -140,7 +135,6 @@ class ResBlock(nn.Module):
     """
     A residual block that can optionally change the number of channels.
     :param channels: the number of input channels.
-    :param emb_channels: the number of timestep embedding channels.
     :param dropout: the rate of dropout.
     :param out_channels: if specified, the number of out channels.
     :param use_conv: if True and out_channels is specified, use a spatial
@@ -210,9 +204,7 @@ class ResBlock(nn.Module):
 
     def forward(self, x):
         """
-        Apply the block to a Tensor, conditioned on a timestep embedding.
         :param x: an [N x C x ...] Tensor of features.
-        :param emb: an [N x emb_channels] Tensor of timestep embeddings.
         :return: an [N x C x ...] Tensor of outputs.
         """
         return checkpoint(
@@ -371,7 +363,7 @@ class QKVAttention(nn.Module):
 
 class TriplaneGenerator(nn.Module):
     """
-    The full UNet model with attention and timestep embedding.
+    The Triplane Generator.
     :param in_channels: channels in the input Tensor.
     :param model_channels: base channel count for the model.
     :param out_channels: channels in the output Tensor.
