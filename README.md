@@ -54,7 +54,7 @@ cd ..
 
 # Inference
 
-To use the pre-trained model (provided or trained by yourself) to inference, you can choose one of the following methods.
+To use the pre-trained model (provided or trained by yourself) to inference, you can choose one of the following methods. It needs about 16GB GPU VRAM.
 
 ### 1) Infer only one prompt
 
