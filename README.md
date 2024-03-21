@@ -4,6 +4,8 @@
 
 The official implementation of BrightDreamer: Generic 3D Gaussian Generative Framework for Fast Text-to-3D Synthesis.
 
+If you find this work interesting or useful, please give me a ⭐!
+
 User Interactive Demo
 
 https://github.com/lutao2021/BrightDreamer/assets/114853034/f59a5143-d1d2-4a5e-bdae-c873c183a1d5
