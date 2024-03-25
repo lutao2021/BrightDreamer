@@ -4,13 +4,9 @@ from .network_crossattn_generative import TriplaneGenerator as CrossAttnTriplane
 from .point_transformer import PointTransformer
 
 class Generator(nn.Module):
-    def __init__(self, input_dim=3, z_dim=1024, context_dim=4096, hidden_dim=256, output_dim=1, device=None, opt=None, bound=1):
+    def __init__(self, context_dim=4096, device=None, opt=None, bound=1):
         super().__init__()
         self.device = device
-        self.input_dim = input_dim
-        self.z_dim = z_dim
-        self.hidden_dim = hidden_dim
-        self.output_dim = output_dim
         self.context_dim = context_dim
         self.opt = opt
         self.bound = bound
