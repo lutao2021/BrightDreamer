@@ -505,6 +505,7 @@ class GasussianDataset:
                 self.texts = self.texts
                 if opt.cache_path is not None:
                     self.texts_embeddings = torch.load(self.opt.cache_path)
+                    assert len(self.texts) == len(self.texts_embeddings)
             else:
                 self.texts = ['a man wearing a hat is mowing the lawn',
                               'A handsome man wearing a leather jacket is riding a motorcycle',
@@ -519,7 +520,6 @@ class GasussianDataset:
                     for d in ['front', 'side', 'back']:
                         embeddings[d] = guidance.get_text_embeds([f"{text}, {d} view"]).cpu()
                     self.texts_embeddings.append(embeddings)
-            assert len(self.texts) == len(self.texts_embeddings)
 
 
         elif opt.prompts_set == 'animal':
@@ -547,6 +547,7 @@ class GasussianDataset:
                 self.texts = self.texts
                 if opt.cache_path is not None:
                     self.texts_embeddings = torch.load(self.opt.cache_path)
+                    assert len(self.texts) == len(self.texts_embeddings)
             if self.type != 'train':
                 self.texts = ['a dog wearing a tie and wearing a party hat',
                               'a koala sitting on a stone and wearing a cape and wearing a cowboy hat',
@@ -563,7 +564,6 @@ class GasussianDataset:
                     for d in ['front', 'side', 'back']:
                         embeddings[d] = guidance.get_text_embeds([f"{text}, {d} view"]).cpu()
                     self.texts_embeddings.append(embeddings)
-            assert len(self.texts) == len(self.texts_embeddings)
 
         self.size = len(self.texts)
         self.uncond_embed = guidance.get_text_embeds(['']).cpu()
