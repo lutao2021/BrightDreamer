@@ -465,7 +465,7 @@ class GasussianDataset:
 
         if opt.prompts_set == 'vehicle':
             self.texts = []
-            with open('./car.txt', 'r') as f:
+            with open('./vehicle.txt', 'r') as f:
                 texts = f.readlines()
             for text in texts:
                 if len(text.strip().split(' ')) < 75:
