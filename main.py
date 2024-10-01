@@ -162,7 +162,7 @@ if __name__ == '__main__':
     parser.add_argument('--c_batch_size', type=int, default=4, help="camera batch size for each prompt")
 
     ### dataset options
-    parser.add_argument('--prompts_set', type=str, default='vehicle', choices=['vehicle', 'daily_life', 'animal'], help="optimizer")
+    parser.add_argument('--prompts_set', type=str, default='vehicle', choices=['vehicle', 'daily_life', 'animal', 'mix'], help="optimizer")
     parser.add_argument('--cache_path', type=str, default=None, help="optimizer")
 
     parser.add_argument('--bound', type=float, default=1, help="assume the scene is bounded in box(-bound, bound)")
