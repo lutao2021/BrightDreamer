@@ -101,12 +101,13 @@ Then you can open the page in your local browser.
 
 # Training
 
-1) To accelerate training, we choose to cache the text embeddings in the training prompt set. But this may cost your more memory space and disk space. This method can save several minutes (speed up about 15%) for each epoch depending on the size of training prompts.
+1) To accelerate training, we choose to cache the text embeddings in the training prompt set. But this may cost more RAM memory space and disk space. This method can save several minutes (speed up about 15%) for each epoch depending on the size of training prompts. You can also choose to mix the provided prompts into a single txt file for mixing training.
 
     ```
     python embedding_cache.py --prompts_set vehicle
     python embedding_cache.py --prompts_set daily_life
     python embedding_cache.py --prompts_set animal
+    python embedding_cache.py --prompts_set mix
     ```
 
     The cached text embeddings will be saved at ./vehicle.pkl, ./daily_life.pkl, and ./animal.pkl.
@@ -117,6 +118,7 @@ Then you can open the page in your local browser.
     CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts/vehicle.sh
     CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts/daily_life.sh
     CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts/animal.sh
+    CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts/mix_training.sh
     ```
 
     Key hyper-parameters:
