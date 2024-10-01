@@ -564,6 +564,41 @@ class GasussianDataset:
                     for d in ['front', 'side', 'back']:
                         embeddings[d] = guidance.get_text_embeds([f"{text}, {d} view"]).cpu()
                     self.texts_embeddings.append(embeddings)
+                    
+        elif opt.prompts_set == 'mix':
+            self.texts = []
+            with open('./mix.txt', 'r') as f:
+                texts = f.readlines()
+            for text in texts:
+                if len(text.strip().split(' ')) < 75:
+                    self.texts.append(text.strip())
+
+            print(len(self.texts))
+            if self.type == 'train':
+                self.texts = self.texts
+                if opt.cache_path is not None:
+                    self.texts_embeddings = torch.load(self.opt.cache_path)
+                    assert len(self.texts) == len(self.texts_embeddings)
+            else:
+                self.texts = ['Electric luxury SUV, deep purple, spacious, advanced tech',
+                              'Electric luxury SUV, light yellow, spacious, advanced tech',
+                              'Vintage pickup, sky blue, rugged appeal, classic functionality',
+                              'a man wearing a hat is mowing the lawn',
+                              'A handsome man wearing a leather jacket is riding a motorcycle',
+                              'A stylish woman in a long dress is climbing a mountain',
+                              'A glamorous woman in a cocktail dress is dancing at a fancy party',
+                              'a woman wearing a backpack is climbing a mountain',
+                              'a teddy bear sitting on books and wearing a scarf and wearing a flat cap',
+                              'a wolf wearing a tie and wearing a party hat']
+            if self.type != 'train':
+                self.texts_embeddings = []
+                for text in self.texts:
+                    embeddings = {}
+                    embeddings['default'] = guidance.get_text_embeds([text]).cpu()
+                    for d in ['front', 'side', 'back']:
+                        embeddings[d] = guidance.get_text_embeds([f"{text}, {d} view"]).cpu()
+                    self.texts_embeddings.append(embeddings)
+        
 
         self.size = len(self.texts)
         self.uncond_embed = guidance.get_text_embeds(['']).cpu()
