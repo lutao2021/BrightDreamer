@@ -29,7 +29,7 @@ If you have any questions about this project, please feel free to open an issue.
 
 # Install
 ```bash
-git clone https://github.com/vlislab22/BrightDreamer.git
+git clone https://github.com/lutao2021/BrightDreamer.git
 cd BrightDreamer
 conda create -n BrightDreamer python=3.9
 conda activate BrightDreamer
